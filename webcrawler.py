@@ -25,6 +25,10 @@ def main():
             base_url= 'http://wa.amu.edu.pl'
             url =  urllib.parse.urljoin(base_url, link['href'])
             urls.append(url)
+     
+        print('Staff headers found:')
+        for url in urls:
+            print(get_details(url))    
         
     print('Urls found:')
     print('\n'.join(urls))
@@ -34,5 +38,12 @@ def get_content(url):
     data = response.read()
     doc = BeautifulSoup(data, 'html.parser')
     return doc.find(id='tresc_wlasciwa')
+ 
     
+
+def get_details(url):
+    content = get_content(url)
+    header = content.find('h1')
+    return header.get_text()
+
 main()
