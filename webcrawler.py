@@ -16,4 +16,5 @@ response = urllib.request.urlopen(staff_url)
 data = response.read()
 doc = BeautifulSoup(data, 'html.parser')
 
-print(doc)
+staff_content = doc.find(id='tresc_wlasciwa')
+print(staff_content)
