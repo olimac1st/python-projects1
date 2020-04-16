@@ -24,7 +24,6 @@ def main():
         if len(link.get_text()) > 1:
             base_url= 'http://wa.amu.edu.pl'
             url =  urllib.parse.urljoin(base_url, link['href'])
-            urls.append(url)
             encoded_url = fix_encoding(url)
             urls.append(encoded_url)
      
@@ -47,7 +46,6 @@ def get_content(url):
     return doc.find(id='tresc_wlasciwa')
  
     
-
 def get_details(url):
     try:
         content = get_content(url)
