@@ -9,6 +9,7 @@ Created on Wed Apr 15 15:08:10 2020
 import urllib.request
 from bs4 import BeautifulSoup
 import urllib.parse
+from datetime import datetime
 
 def main():
     print('Getting staff urls...')
@@ -24,7 +25,6 @@ def main():
         if len(link.get_text()) > 1:
             base_url= 'http://wa.amu.edu.pl'
             url =  urllib.parse.urljoin(base_url, link['href'])
-            urls.append(url)
             encoded_url = fix_encoding(url)
             urls.append(encoded_url)
      
@@ -47,7 +47,6 @@ def get_content(url):
     return doc.find(id='tresc_wlasciwa')
  
     
-
 def get_details(url):
     try:
         content = get_content(url)
@@ -62,4 +61,10 @@ def get_details(url):
             return header.get_text() + ':' + email
     return header.get_text() + '(no email found)'
 
+start = datetime.now().timestamp()
 main()
+end = datetime.now().timestamp()
+duration = end - start
+print("Processing time = " + str(duration))
+
+
