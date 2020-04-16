@@ -42,7 +42,11 @@ def get_content(url):
     
 
 def get_details(url):
-    content = get_content(url)
+    try:
+        content = get_content(url)
+    except:
+        print('Error getting details from', url)
+        return 'No content'
     header = content.find('h1')
     return header.get_text()
 
